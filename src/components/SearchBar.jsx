@@ -1,27 +1,27 @@
-import React, { useState } from 'react';
-import '../styles/SearchBar.css';
+import React from "react";
+import "./../styles/SearchBar.css";
 
-const SearchBar = ({ onSearch }) => {
-  const [input, setInput] = useState('');
+const SearchBar = ({ setCity, fetchWeather }) => {
+  const handleInputChange = (e) => {
+    setCity(e.target.value);
+  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onSearch(input);
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      fetchWeather();
+    }
   };
 
   return (
-    <form className="search-bar" onSubmit={handleSubmit}>
+    <div className="search-bar">
       <input
         type="text"
         placeholder="Enter city name"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        className="search-input"
+        onChange={handleInputChange}
+        onKeyPress={handleKeyPress}
       />
-      <button type="submit" className="search-button">
-        Search
-      </button>
-    </form>
+      <button onClick={fetchWeather}>Search</button>
+    </div>
   );
 };
 
