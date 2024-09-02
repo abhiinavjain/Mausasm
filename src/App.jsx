@@ -11,7 +11,10 @@ const App = () => {
   const fetchWeather = async (e) => {
     e.preventDefault();
 
-    const apiKey = `b7ef150c1f1c38435b80a6be4fcbb9e4`;
+    const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
+    console.log(process.env);
+
+
     const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`;
 
     try {
